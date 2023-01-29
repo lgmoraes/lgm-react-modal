@@ -31,11 +31,17 @@ function stopPropagation(e) {
   e.stopPropagation()
 }
 
-function Modal({ open, content, toggleModal }) {
+
+
+function Modal({ open, setOpen, children }) {
+  function toggleModal() {
+    setOpen(!open)
+  }
+
   return (
     <Background open={open} onClick={toggleModal}>
       <ModalWrapper onClick={stopPropagation}>
-        {content}
+        {children}
         <button onClick={toggleModal}>Close</button>
       </ModalWrapper>
     </Background>

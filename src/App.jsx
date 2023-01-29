@@ -1,7 +1,7 @@
-import { useContext } from 'react'
 import styled from 'styled-components'
+import { useState } from 'react'
 
-import { ModalContext } from './lib/ModalContext'
+import Modal from './lib/Modal'
 
 const Container = styled.div`
   padding: 2em;
@@ -17,35 +17,33 @@ const Container = styled.div`
 `
 
 const Btns = styled.div`
+  width: 200px;
+
   display: flex;
+  flex-direction: column;
   gap: 1em;
 `
 
 function App() {
-  const { toggleModal, setContent } = useContext(ModalContext)
-
-  function openModal1() {
-    setContent('Modal 1 : The most basic modal example')
-    toggleModal()
-  }
-
-  function openModal2() {
-    setContent(
-      <>
-        <h1>Title</h1>
-        <p>Modal 2 : Modal with JSX</p>
-      </>
-    )
-    toggleModal()
-  }
+  const [open1, setOpen1] = useState()
+  const [open2, setOpen2] = useState()
 
   return (
     <Container>
       <h1>Modal demo</h1>
       <Btns>
-        <button onClick={openModal1}>Open modal 1</button>
-        <button onClick={openModal2}>Open modal 2</button>
+        <button onClick={setOpen1}>Open modal 1 : Text</button>
+        <button onClick={setOpen2}>Open modal 2 : JSX</button>
       </Btns>
+      <Modal open={open1} setOpen={setOpen1}>
+        Modal 1 : The most basic modal example
+      </Modal>
+      <Modal open={open2} setOpen={setOpen2}>
+        <>
+          <h1>Title</h1>
+          <p>Modal 2 : Modal with JSX</p>
+        </>
+      </Modal>
     </Container>
   )
 }
