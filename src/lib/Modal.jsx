@@ -17,6 +17,7 @@ const Background = styled.div`
 
 const ModalWrapper = styled.div`
   padding: 1em;
+  margin: 1em;
 
   border-radius: 10px;
   background-color: white;
