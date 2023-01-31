@@ -24,9 +24,16 @@ const Btns = styled.div`
   gap: 1em;
 `
 
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+`
+
 function App() {
   const [open1, setOpen1] = useState()
   const [open2, setOpen2] = useState()
+  const [open3, setOpen3] = useState()
 
   return (
     <Container>
@@ -34,15 +41,37 @@ function App() {
       <Btns>
         <button onClick={setOpen1}>Open modal 1 : Text</button>
         <button onClick={setOpen2}>Open modal 2 : JSX</button>
+        <button onClick={setOpen3}>Open modal 3 : Formular</button>
       </Btns>
       <Modal open={open1} setOpen={setOpen1}>
         Modal 1 : The most basic modal example
       </Modal>
       <Modal open={open2} setOpen={setOpen2}>
         <>
-          <h1>Title</h1>
+          <h2>Title</h2>
           <p>Modal 2 : Modal with JSX</p>
         </>
+      </Modal>
+      <Modal open={open3} setOpen={setOpen3}>
+        <Form>
+          <h2>Formulaire</h2>
+          <label htmlFor="name">Name : </label>
+          <input id="name" type="text" />
+
+          <label htmlFor="email">Email :</label>
+          <input id="email" type="email" />
+
+          <label htmlFor="select">Select :</label>
+          <select id="select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+          <div>
+            <label htmlFor="option">Option: </label>
+            <input type="checkbox" id="option" />
+          </div>
+        </Form>
       </Modal>
     </Container>
   )

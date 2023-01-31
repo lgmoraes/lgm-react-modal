@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 const Background = styled.div`
@@ -32,16 +33,60 @@ function stopPropagation(e) {
   e.stopPropagation()
 }
 
+function Modal({ open, setOpen, children, accessibility = true }) {
+  const modal = useRef(null)
 
-
-function Modal({ open, setOpen, children }) {
   function toggleModal() {
     setOpen(!open)
   }
 
+  function getFocusables(el) {
+    return el.querySelectorAll('input, select, textarea, button')
+  }
+
+  function onkeydown(e) {
+    if (!accessibility) return
+
+    const key = e.key.toUpperCase()
+
+    if (key === 'ESCAPE') {
+      toggleModal()
+    } else if (key === 'TAB') {
+      const focusables = getFocusables(e.currentTarget)
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+
+      if (e.target === last && e.shiftKey === false) {
+        first.focus()
+        e.preventDefault()
+      } else if (e.target === first && e.shiftKey === true) {
+        last.focus()
+        e.preventDefault()
+      } else if (e.target === modal.current && e.shiftKey === true) {
+        last.focus()
+        e.preventDefault()
+      }
+    }
+
+    e.stopPropagation()
+  }
+
+  useEffect(() => {
+    if (!open) return
+
+    if (accessibility) modal.current.focus()
+  }, [accessibility, open])
+
   return (
-    <Background open={open} onClick={toggleModal}>
-      <ModalWrapper onClick={stopPropagation}>
+    <Background
+      open={open}
+      onClick={toggleModal}
+      onKeyDown={onkeydown}
+      aria-hidden={!open}
+      role="dialog"
+      tabIndex={0}
+    >
+      <ModalWrapper onClick={stopPropagation} ref={modal} tabIndex={0}>
         {children}
         <button onClick={toggleModal}>Close</button>
       </ModalWrapper>
