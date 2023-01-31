@@ -8,6 +8,7 @@ const Background = styled.div`
   justify-content: center;
   align-items: center;
 
+  visibility: ${(props) => (props.background ? 'visible' : 'hidden')};
   display: ${(props) => (props.open ? 'flex' : 'none')};
   position: fixed;
   width: 100vw;
@@ -24,6 +25,7 @@ const ModalWrapper = styled.div`
   background-color: white;
   box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.4);
 
+  visibility: visible;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -33,7 +35,13 @@ function stopPropagation(e) {
   e.stopPropagation()
 }
 
-function Modal({ open, setOpen, children, accessibility = true }) {
+function Modal({
+  open,
+  setOpen,
+  children,
+  accessibility = true,
+  background = true,
+}) {
   const modal = useRef(null)
 
   function toggleModal() {
@@ -85,6 +93,7 @@ function Modal({ open, setOpen, children, accessibility = true }) {
       aria-hidden={!open}
       role="dialog"
       tabIndex={0}
+      background={background}
     >
       <ModalWrapper onClick={stopPropagation} ref={modal} tabIndex={0}>
         {children}

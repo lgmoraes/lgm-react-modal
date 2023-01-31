@@ -17,7 +17,7 @@ const Container = styled.div`
 `
 
 const Btns = styled.div`
-  width: 200px;
+  width: 220px;
 
   display: flex;
   flex-direction: column;
@@ -34,6 +34,7 @@ function App() {
   const [open1, setOpen1] = useState()
   const [open2, setOpen2] = useState()
   const [open3, setOpen3] = useState()
+  const [open4, setOpen4] = useState()
 
   return (
     <Container>
@@ -42,6 +43,7 @@ function App() {
         <button onClick={setOpen1}>Open modal 1 : Text</button>
         <button onClick={setOpen2}>Open modal 2 : JSX</button>
         <button onClick={setOpen3}>Open modal 3 : Formular</button>
+        <button onClick={setOpen4}>Open modal 4 : No background</button>
       </Btns>
       <Modal open={open1} setOpen={setOpen1}>
         Modal 1 : The most basic modal example
@@ -72,6 +74,9 @@ function App() {
             <input type="checkbox" id="option" />
           </div>
         </Form>
+      </Modal>
+      <Modal open={open4} setOpen={setOpen4} background={false}>
+        Modal 4 : Modal without background
       </Modal>
     </Container>
   )
