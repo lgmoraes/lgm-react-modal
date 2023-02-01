@@ -43,6 +43,7 @@ function Modal({
   modalStyle,
   accessibility = true,
   background = true,
+  btnClose = 'Close',
 }) {
   const modal = useRef(null)
 
@@ -105,7 +106,7 @@ function Modal({
         tabIndex={0}
       >
         {children}
-        <button onClick={toggleModal}>Close</button>
+        {btnClose && <button onClick={toggleModal}>{btnClose}</button>}
       </ModalWrapper>
     </Background>
   )
