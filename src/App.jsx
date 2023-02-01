@@ -35,6 +35,7 @@ function App() {
   const [open2, setOpen2] = useState()
   const [open3, setOpen3] = useState()
   const [open4, setOpen4] = useState()
+  const [open5, setOpen5] = useState()
 
   return (
     <Container>
@@ -44,6 +45,7 @@ function App() {
         <button onClick={setOpen2}>Open modal 2 : JSX</button>
         <button onClick={setOpen3}>Open modal 3 : Formular</button>
         <button onClick={setOpen4}>Open modal 4 : No background</button>
+        <button onClick={setOpen5}>Open modal 5 : Custom style</button>
       </Btns>
       <Modal open={open1} setOpen={setOpen1}>
         Modal 1 : The most basic modal example
@@ -77,6 +79,17 @@ function App() {
       </Modal>
       <Modal open={open4} setOpen={setOpen4} background={false}>
         Modal 4 : Modal without background
+      </Modal>
+      <Modal
+        open={open5}
+        setOpen={setOpen5}
+        backgroundStyle={{ backgroundColor: 'rgba(0, 0, 124, 0.4)' }}
+        modalStyle={{
+          background:
+            'linear-gradient(to bottom,#99ccff 0%,#60abf8 44%,#1e76ce 100%)',
+        }}
+      >
+        Modal 5 : Modal with custom style
       </Modal>
     </Container>
   )

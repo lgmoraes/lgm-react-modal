@@ -39,6 +39,8 @@ function Modal({
   open,
   setOpen,
   children,
+  backgroundStyle,
+  modalStyle,
   accessibility = true,
   background = true,
 }) {
@@ -87,6 +89,7 @@ function Modal({
 
   return (
     <Background
+      style={backgroundStyle}
       open={open}
       onClick={toggleModal}
       onKeyDown={onkeydown}
@@ -95,7 +98,12 @@ function Modal({
       tabIndex={0}
       background={background}
     >
-      <ModalWrapper onClick={stopPropagation} ref={modal} tabIndex={0}>
+      <ModalWrapper
+        style={modalStyle}
+        onClick={stopPropagation}
+        ref={modal}
+        tabIndex={0}
+      >
         {children}
         <button onClick={toggleModal}>Close</button>
       </ModalWrapper>
