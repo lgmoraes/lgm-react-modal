@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
+import closeImg from './close.png'
+
 const Background = styled.div`
   background: rgba(50, 50, 50, 0.5);
 
@@ -19,6 +21,7 @@ const Background = styled.div`
 
 const ModalWrapper = styled.div`
   padding: 1em;
+  padding-top: 46px;
   margin: 1em;
 
   border-radius: 10px;
@@ -26,9 +29,24 @@ const ModalWrapper = styled.div`
   box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.4);
 
   visibility: visible;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1em;
+`
+
+const CloseButton = styled.div`
+  width: 16px;
+  height: 16px;
+
+  background: no-repeat center url(${closeImg});
+  background-size: contain;
+  opacity: 0.5;
+  cursor: pointer;
+
+  position: absolute;
+  top: 1em;
+  right: 1em;
 `
 
 function stopPropagation(e) {
@@ -43,7 +61,7 @@ function Modal({
   modalStyle,
   accessibility = true,
   background = true,
-  btnClose = 'Close',
+  btnClose = false,
 }) {
   const modal = useRef(null)
 
@@ -105,6 +123,7 @@ function Modal({
         ref={modal}
         tabIndex={0}
       >
+        <CloseButton onClick={toggleModal} />
         {children}
         {btnClose && <button onClick={toggleModal}>{btnClose}</button>}
       </ModalWrapper>

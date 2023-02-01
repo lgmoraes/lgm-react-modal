@@ -47,7 +47,7 @@ function App() {
         <button onClick={setOpen3}>Open modal 3 : Formular</button>
         <button onClick={setOpen4}>Open modal 4 : No background</button>
         <button onClick={setOpen5}>Open modal 5 : Custom style</button>
-        <button onClick={setOpen6}>Open modal 6 : No close button</button>
+        <button onClick={setOpen6}>Open modal 6 : Add close button</button>
       </Btns>
       <Modal open={open1} setOpen={setOpen1}>
         Modal 1 : The most basic modal example
@@ -93,8 +93,8 @@ function App() {
       >
         Modal 5 : Modal with custom style
       </Modal>
-      <Modal open={open6} setOpen={setOpen6} btnClose={false}>
-        Modal 6 : Modal without close button
+      <Modal open={open6} setOpen={setOpen6} btnClose="Close">
+        Modal 6 : Modal with close button
       </Modal>
     </Container>
   )
