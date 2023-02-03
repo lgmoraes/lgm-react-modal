@@ -30,6 +30,13 @@ const Form = styled.form`
   gap: 7px;
 `
 
+const HighlightText = styled.span`
+  background-color: orange;
+  padding: 0.2em;
+  border-radius: 0.3em;
+  cursor: pointer;
+`
+
 function App() {
   const [open1, setOpen1] = useState()
   const [open2, setOpen2] = useState()
@@ -37,6 +44,9 @@ function App() {
   const [open4, setOpen4] = useState()
   const [open5, setOpen5] = useState()
   const [open6, setOpen6] = useState()
+  const [open7a, setOpen7a] = useState()
+  const [open7b, setOpen7b] = useState()
+  const [open7c, setOpen7c] = useState()
 
   return (
     <Container>
@@ -48,6 +58,7 @@ function App() {
         <button onClick={setOpen4}>Open modal 4 : No background</button>
         <button onClick={setOpen5}>Open modal 5 : Custom style</button>
         <button onClick={setOpen6}>Open modal 6 : Add close button</button>
+        <button onClick={setOpen7a}>Open modal 7 : Modal in modal</button>
       </Btns>
       <Modal open={open1} setOpen={setOpen1}>
         Modal 1 : The most basic modal example
@@ -95,6 +106,27 @@ function App() {
       </Modal>
       <Modal open={open6} setOpen={setOpen6} btnClose="Close">
         Modal 6 : Modal with close button
+      </Modal>
+      <Modal open={open7a} setOpen={setOpen7a}>
+        Modal 7 : Clic <HighlightText onClick={setOpen7b}>here</HighlightText>{' '}
+        to open second modal
+        <Modal open={open7b} setOpen={setOpen7b}>
+          Second modal. Clic{' '}
+          <HighlightText onClick={setOpen7c}>here</HighlightText> to open third
+          modal
+          <Modal open={open7c} setOpen={setOpen7c}>
+            Third modal{' '}
+            <button
+              onClick={() => {
+                setOpen7a(false)
+                setOpen7b(false)
+                setOpen7c(false)
+              }}
+            >
+              Close all modals
+            </button>
+          </Modal>
+        </Modal>
       </Modal>
     </Container>
   )
