@@ -22,7 +22,7 @@ const Background = styled.div`
 const ModalWrapper = styled.div`
   padding: 1em;
   padding-top: 46px;
-  margin: 1em;
+  margin: 1.5em;
 
   border-radius: 10px;
   background-color: white;
@@ -30,12 +30,9 @@ const ModalWrapper = styled.div`
 
   visibility: visible;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
 `
 
-const CloseButton = styled.div`
+const CloseIcon = styled.div`
   width: 16px;
   height: 16px;
 
@@ -47,6 +44,12 @@ const CloseButton = styled.div`
   position: absolute;
   top: 1em;
   right: 1em;
+`
+
+const CloseButton = styled.button`
+  width: 100%;
+  margin-top: 1em;
+  display: block;
 `
 
 function stopPropagation(e) {
@@ -123,9 +126,11 @@ function Modal({
         ref={modal}
         tabIndex={0}
       >
-        <CloseButton onClick={toggleModal} />
+        <CloseIcon onClick={toggleModal} />
         {children}
-        {btnClose && <button onClick={toggleModal}>{btnClose}</button>}
+        {btnClose && (
+          <CloseButton onClick={toggleModal}>{btnClose}</CloseButton>
+        )}
       </ModalWrapper>
     </Background>
   )
