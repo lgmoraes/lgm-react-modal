@@ -57,6 +57,16 @@ function stopPropagation(e) {
   e.stopPropagation()
 }
 
+/**
+ * Show a modal when open state is true
+ * @param { Boolean } open Define if modal is visible
+ * @param { Function } setOpen Set function from useState
+ * @param { Boolean } background Add a blocking background if true
+ * @param { (false | String) } btnClose Add a close button after modal contents
+ * @param { Boolean } accessibility Make modal accessibility compliant by handling focus and keys
+ * @param { Object } backgroundStyle Customize background with a style object
+ * @param { Object } modalStyle Customize modal with a style object
+ */
 function Modal({
   open,
   setOpen,
