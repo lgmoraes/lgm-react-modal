@@ -126,7 +126,7 @@ function Modal({
       open={open}
       onClick={toggleModal}
       onKeyDown={onkeydown}
-      aria-hidden={!open}
+      ariaHidden={!open}
       role="dialog"
       tabIndex={0}
       background={background}
