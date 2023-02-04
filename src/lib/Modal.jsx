@@ -32,10 +32,11 @@ const ModalWrapper = styled.div`
   position: relative;
 `
 
-const CloseIcon = styled.div`
+const CloseIcon = styled.button`
   width: 16px;
   height: 16px;
 
+  border: none;
   background: no-repeat center url(${closeImg});
   background-size: contain;
   opacity: 0.5;
