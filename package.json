@@ -1,5 +1,13 @@
 {
   "name": "lgm-react-modal",
+  "description": "An easy to use modal for react",
+  "author": "Louis Moraes",
+  "keywords": [
+    "react",
+    "react-component",
+    "modal",
+    "dialog"
+  ],
   "version": "0.1.1",
   "main": "dist/index.js",
   "module": "dist/index.js",
